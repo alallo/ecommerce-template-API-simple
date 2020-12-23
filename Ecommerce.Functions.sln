@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.EmailService", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Models", "Ecommerce.Models\Ecommerce.Models.csproj", "{1F2628FC-F616-43FA-966D-D82BB8077E15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Functions.Tests", "Ecommerce.Functions.Tests\Ecommerce.Functions.Tests.csproj", "{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{1F2628FC-F616-43FA-966D-D82BB8077E15}.Release|x64.Build.0 = Release|Any CPU
 		{1F2628FC-F616-43FA-966D-D82BB8077E15}.Release|x86.ActiveCfg = Release|Any CPU
 		{1F2628FC-F616-43FA-966D-D82BB8077E15}.Release|x86.Build.0 = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|x64.Build.0 = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Debug|x86.Build.0 = Debug|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|x64.ActiveCfg = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|x64.Build.0 = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|x86.ActiveCfg = Release|Any CPU
+		{30D3F2C2-623D-4D4D-91F3-4EECE2E2CB3D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

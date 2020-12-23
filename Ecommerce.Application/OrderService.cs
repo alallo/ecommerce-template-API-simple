@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Ecommerce.EmailService;
 using Ecommerce.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Ecommerce.Application
 {
@@ -13,9 +14,10 @@ namespace Ecommerce.Application
             _emailService = emailService;
         }
 
-        public async Task SendOrderToAdminEmail(Order order, string email)
+        public async Task SendOrderToAdminEmail(Order order, string email, ILogger logger)
         {
-            await _emailService.SendEmail<Order>(order, email);
+            var htmlBody = EmailTemplateHelper.GenerateEmailOrderToAdminBody(order);
+            await _emailService.SendEmail(htmlBody, "", email, logger);
         }
     }
 }

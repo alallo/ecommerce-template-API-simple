@@ -30,7 +30,7 @@ namespace Ecommerce.Functions
                 PropertyNameCaseInsensitive = true
             };
             var order = JsonSerializer.Deserialize<Order>(requestBody, options);
-            await _orderService.SendOrderToAdminEmail(order, "alessandro.lallo@gmail.com");
+            await _orderService.SendOrderToAdminEmail(order, "alessandro.lallo@gmail.com", log);
             return new OkResult();
         }
     }
