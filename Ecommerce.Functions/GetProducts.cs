@@ -16,16 +16,16 @@ namespace Ecommerce.Functions
         [FunctionName("GetProducts")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "products")] HttpRequest req,
-            ILogger log)
+            ILogger log, ExecutionContext context)
         {
-            var productList = await GetProductFromFileAsync();
+            var productList = await GetProductFromFileAsync(context);
             return new OkObjectResult(productList);
         }
 
         
-        private async Task<IList<Product>> GetProductFromFileAsync()
+        private async Task<IList<Product>> GetProductFromFileAsync(ExecutionContext context)
         {
-            using (StreamReader r = new StreamReader("productList.json"))
+            using (StreamReader r = new StreamReader(Path.Combine(context.FunctionAppDirectory, "productList.json")))
             {
                 string json = await r.ReadToEndAsync();
                 var productList = JsonSerializer.Deserialize<List<Product>>(json);
