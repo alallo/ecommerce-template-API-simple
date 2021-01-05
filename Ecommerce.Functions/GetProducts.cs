@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using Ecommerce.Models;
 using System.Text.Json;
+using System.Linq;
 
 namespace Ecommerce.Functions
 {
@@ -15,10 +16,15 @@ namespace Ecommerce.Functions
     {
         [FunctionName("GetProducts")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "products")] HttpRequest req,
-            ILogger log, ExecutionContext context)
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "products/{productId:int?}")] HttpRequest req,
+            ILogger log, ExecutionContext context, int? productId)
         {
             var productList = await GetProductFromFileAsync(context);
+            if(productId.HasValue)
+            {
+                var product = productList.FirstOrDefault(x => x.Id == productId);
+                return new OkObjectResult(product);
+            }
             return new OkObjectResult(productList);
         }
 
