@@ -5,7 +5,7 @@ variables:
  - group: "dev-ecommerce"
  - name: vmImageName
    value: 'ubuntu-latest'
- - name: workingDirector
+ - name: workingDirectory
    value: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
 
 stages:
