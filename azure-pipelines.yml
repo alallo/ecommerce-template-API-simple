@@ -60,7 +60,7 @@ stages:
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
             inputs:
-              azureSubscription: '$(subscription_id)'
+              azureSubscription: $(subscription_id)
               appType: functionApp
               appName: devecommercefunc
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
