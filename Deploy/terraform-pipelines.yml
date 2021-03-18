@@ -4,7 +4,7 @@ parameters:
   vmImageName: 'ubuntu-latest'
   
 jobs:
-- job: Deploy to Azure
+- job: deploy
   displayName: "Deploy to ${{parameters.environment}}"
   pool:
     vmImage: $(parameters.vmImageName)
