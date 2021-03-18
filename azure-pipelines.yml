@@ -1,19 +1,10 @@
-# .NET Core Function App to Windows on Azure
-# Build a .NET Core function app and deploy it to Azure as a Windows function App.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
 - main
 
 variables:
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '48c37f0b-8a48-4474-bff3-42b26d63c7b9'
-
-  # Agent VM image name
+  variables:
+  group: "dev-ecommerce"
   vmImageName: 'ubuntu-latest'
-
-  # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
 
 stages:
@@ -70,7 +61,7 @@ stages:
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
             inputs:
-              azureSubscription: '$(azureSubscription)'
+              azureSubscription: '$(subscription_id)'
               appType: functionApp
               appName: devecommercefunc
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
