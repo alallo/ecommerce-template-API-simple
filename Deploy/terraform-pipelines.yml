@@ -1,12 +1,6 @@
 parameters:
   environment: 'dev1'
   terraformVersion: 0.13.3
-  subscriptionName: ''
-  resourceGroupName: ''
-  storageAccountName: ''
-  containerName: ''
-  tfstateKey: ''
-
 
 jobs:  
 - job: deploy
