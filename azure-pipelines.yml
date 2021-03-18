@@ -66,6 +66,7 @@ stages:
           - template: Deploy/terraform-pipelines.yml
             parameters:
                 environment: dev1
+                vmImageName: $(vmImageName)
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
             inputs:
