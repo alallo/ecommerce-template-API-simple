@@ -10,6 +10,7 @@ parameters:
     default: ubuntu-latest 
   - name: subscriptionName
     type: string
+    default: 'Azure subscription 1'
   - name: resourceGroupName
     type: string
   - name: storageAccountName
