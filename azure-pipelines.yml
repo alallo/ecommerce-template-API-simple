@@ -59,6 +59,12 @@ stages:
             parameters:
                 environment: dev1
                 vmImageName: $(vmImageName)
+                subscriptionName: ${{subscriptionName}}
+                resourceGroupName: '$(resourceGroupName)'
+                storageAccountName: '$(storageAccountName)'
+                containerName: '$(containerName)'
+                workingDir: 'Deploy/terraform'
+                tfstateKey: '$(tfstate)'
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
             inputs:
