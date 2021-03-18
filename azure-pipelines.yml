@@ -59,7 +59,7 @@ stages:
             parameters:
                 environment: dev1
                 vmImageName: $(vmImageName)
-                subscriptionName: $(subscriptionName)
+                subscriptionName: '$(subscriptionName)'
                 resourceGroupName: '$(resourceGroupName)'
                 storageAccountName: '$(storageAccountName)'
                 containerName: '$(containerName)'
