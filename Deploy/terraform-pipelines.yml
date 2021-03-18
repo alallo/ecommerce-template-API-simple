@@ -9,6 +9,7 @@ parameters:
 
 variables:
   - group: "${{parameters.environment}}-ecommerce"
+  
 steps:
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
   displayName: 'Replace tokens in **/*.tfvars'
