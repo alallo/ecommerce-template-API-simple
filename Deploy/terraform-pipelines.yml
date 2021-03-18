@@ -2,6 +2,9 @@ parameters:
   environment: 'dev1'
   terraformVersion: 0.13.3
 
+variables:
+ - group: "dev-ecommerce"
+
 steps:
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
   displayName: 'Replace tokens in **/*.tfvars'
@@ -16,17 +19,17 @@ steps:
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
   displayName: 'Terraform - azurerm init'
   inputs:
-    backendServiceArm: ${{ parameters.subscriptionName }}
-    backendAzureRmResourceGroupName: ${{ parameters.resourceGroupName }}
-    backendAzureRmStorageAccountName: ${{ parameters.storageAccountName }}
-    backendAzureRmContainerName: ${{ parameters.containerName }}
-    backendAzureRmKey: ${{ parameters.tfstateKey }}
+    backendServiceArm: $(subscriptionName)
+    backendAzureRmResourceGroupName: $(resourceGroupName)
+    backendAzureRmStorageAccountName: $(storageAccountName)
+    backendAzureRmContainerName: $(containerName)
+    backendAzureRmKey: $(tfstateKey)
 
 
 - task: AzureCLI@2
   displayName: 'Terraform - azurerm apply'
   inputs:
-    azureSubscription: ${{ parameters.subscriptionName }}
+    azureSubscription: $(subscriptionName)
     scriptType: pscore
     scriptLocation: inlineScript
     inlineScript: |
