@@ -2,7 +2,6 @@ trigger:
 - main
 
 variables:
-  variables:
   group: "dev-ecommerce"
   vmImageName: 'ubuntu-latest'
   workingDirectory: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
