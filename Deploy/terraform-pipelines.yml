@@ -1,7 +1,13 @@
 parameters:
-  environment: 'dev1'
-  terraformVersion: 0.13.3
-  vmImageName: 'ubuntu-latest'
+ - name: terraformVersion
+   type: string
+   default: 0.13.3
+  - name: environment
+    type: string
+    default: 'dev1'
+  - name: vmImageName
+    type: string
+    default: 'ubuntu-latest'
 
 stages:
 - stage: DeployToAzure
