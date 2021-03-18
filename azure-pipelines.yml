@@ -2,9 +2,11 @@ trigger:
 - main
 
 variables:
-  group: "dev-ecommerce"
-  vmImageName: 'ubuntu-latest'
-  workingDirectory: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
+ - group: "dev-ecommerce"
+ - name: vmImageName
+   value: 'ubuntu-latest'
+ - name: workingDirector
+   value: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
 
 stages:
 - stage: Build
