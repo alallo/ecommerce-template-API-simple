@@ -10,9 +10,6 @@ variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: '48c37f0b-8a48-4474-bff3-42b26d63c7b9'
 
-  # Function app name
-  functionAppName: 'ecrystal-dev'
-
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -65,12 +62,14 @@ stages:
     strategy:
       runOnce:
         deploy:
-
           steps:
+          - template: Deploy/terraform-pipelines.yml
+            parameters:
+                environment: dev1
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
             inputs:
               azureSubscription: '$(azureSubscription)'
               appType: functionApp
-              appName: $(functionAppName)
+              appName: devecommercefunc
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'

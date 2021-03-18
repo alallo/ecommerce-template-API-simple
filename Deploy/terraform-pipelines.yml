@@ -1,0 +1,52 @@
+parameters:
+  environment: 'dev1'
+- name: terraformVersion
+  type: string
+  default: 0.13.3
+- name: subscriptionName
+  type: string
+- name: resourceGroupName
+  type: string
+- name: storageAccountName
+  type: string
+- name: containerName
+  type: string
+- name: tfstateKey
+  type: string
+
+variables:
+  - group: "${{parameters.environment}}-ecommerce"
+steps:
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in **/*.tfvars'
+  inputs:
+    targetFiles: '**/*.tfvars'
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+  displayName: 'Install Terraform ${{ parameters.terraformVersion }}'
+  inputs:
+    terraformVersion: ${{ parameters.terraformVersion }}
+
+- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+  displayName: 'Terraform - azurerm init'
+  inputs:
+    backendServiceArm: ${{ parameters.subscriptionName }}
+    backendAzureRmResourceGroupName: ${{ parameters.resourceGroupName }}
+    backendAzureRmStorageAccountName: ${{ parameters.storageAccountName }}
+    backendAzureRmContainerName: ${{ parameters.containerName }}
+    backendAzureRmKey: ${{ parameters.tfstateKey }}
+
+
+- task: AzureCLI@2
+  displayName: 'Terraform - azurerm apply'
+  inputs:
+    azureSubscription: ${{ parameters.subscriptionName }}
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: |
+     $env:ARM_CLIENT_ID = "$(client_id)"
+     $env:ARM_CLIENT_SECRET = "$(client_secret)"
+     $env:ARM_SUBSCRIPTION_ID = "$(subscription_id)"
+     $env:ARM_TENANT_ID = "$(tenant_id)"
+     terraform apply -auto-approve -var-file="terraform.tfvars"
+    useGlobalConfig: true
