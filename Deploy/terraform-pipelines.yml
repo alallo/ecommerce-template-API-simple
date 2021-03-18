@@ -1,18 +1,11 @@
 parameters:
   environment: 'dev1'
-- name: terraformVersion
-  type: string
-  default: 0.13.3
-- name: subscriptionName
-  type: string
-- name: resourceGroupName
-  type: string
-- name: storageAccountName
-  type: string
-- name: containerName
-  type: string
-- name: tfstateKey
-  type: string
+  terraformVersion: 0.13.3
+  subscriptionName: ''
+  resourceGroupName: ''
+  storageAccountName: ''
+  containerName: ''
+  tfstateKey: ''
 
 variables:
   - group: "${{parameters.environment}}-ecommerce"
