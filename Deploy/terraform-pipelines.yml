@@ -2,7 +2,8 @@ parameters:
   environment: 'dev1'
   terraformVersion: 0.13.3
   vmImageName: 'ubuntu-latest'
-
+  
+jobs:
 - job: Deploy to Azure
   pool:
     vmImage: $(parameters.vmImageName)
