@@ -37,17 +37,17 @@ steps:
   displayName: 'Terraform - azurerm init'
   inputs:
     workingDirectory: ${{ parameters.workingDir }}
-    backendServiceArm: ${{ parameters.subscriptionName}}
-    backendAzureRmResourceGroupName: ${{ parameters.resourceGroupName}}
-    backendAzureRmStorageAccountName: ${{ parameters.storageAccountName}}
-    backendAzureRmContainerName: ${{ parameters.containerName}}
+    backendServiceArm: ${{ parameters.subscriptionName }}
+    backendAzureRmResourceGroupName: ${{ parameters.resourceGroupName }}
+    backendAzureRmStorageAccountName: ${{ parameters.storageAccountName }}
+    backendAzureRmContainerName: ${{ parameters.containerName }}
     backendAzureRmKey: ${{ parameters.tfstateKey}}
 
 
 - task: AzureCLI@2
   displayName: 'Terraform - azurerm apply'
   inputs:
-    azureSubscription: ${{ parameters.subscriptionName)
+    azureSubscription: ${{ parameters.subscriptionName }}
     scriptType: pscore
     scriptLocation: inlineScript
     inlineScript: |
