@@ -5,7 +5,8 @@ parameters:
 jobs:  
 - job: deploy
   displayName: "Deploy to ${{parameters.environment}}"
-  vmImage: $(parameters.vmImageName)
+  pool:
+    vmImage: $(parameters.vmImageName)
 
   variables:
   - group: "${{parameters.environment}}-ecommerce"
@@ -38,9 +39,9 @@ jobs:
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
-      $env:ARM_CLIENT_ID = "$(client_id)"
-      $env:ARM_CLIENT_SECRET = "$(client_secret)"
-      $env:ARM_SUBSCRIPTION_ID = "$(subscription_id)"
-      $env:ARM_TENANT_ID = "$(tenant_id)"
-      terraform apply -auto-approve -var-file="terraform.tfvars"
-      useGlobalConfig: true
+        $env:ARM_CLIENT_ID = $(client_id)"
+        $env:ARM_CLIENT_SECRET = "$(client_secret)"
+        $env:ARM_SUBSCRIPTION_ID = "$(subscription_id)"
+        $env:ARM_TENANT_ID = "$(tenant_id)"
+        terraform apply -auto-approve -var-file="terraform.tfvars"
+        useGlobalConfig: true
