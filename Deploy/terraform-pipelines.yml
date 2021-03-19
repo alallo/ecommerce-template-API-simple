@@ -62,7 +62,6 @@ jobs:
         $env:ARM_SUBSCRIPTION_ID = "$(subscription_id)"
         $env:ARM_TENANT_ID = "$(tenant_id)"
         terraform apply -auto-approve -var-file="terraform.tfvars"
-        useGlobalConfig: true
       workingDirectory: ${{ parameters.workingDir }}
 
   - task: AzureFunctionApp@1
