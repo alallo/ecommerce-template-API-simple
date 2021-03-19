@@ -4,7 +4,7 @@ parameters:
     default: dev1
   - name: terraformVersion
     type: string
-    default: 0.13.3
+    default: 0.14.8
   - name: vmImageName
     type: string
     default: ubuntu-latest 

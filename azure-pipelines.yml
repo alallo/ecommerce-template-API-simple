@@ -62,7 +62,7 @@ stages:
                 resourceGroupName: '$(resourceGroupName)'
                 storageAccountName: '$(storageAccountName)'
                 containerName: '$(containerName)'
-                workingDir: 'Deploy/terraform'
+                workingDir: '$(System.DefaultWorkingDirectory)/Deploy/terraform'
                 tfstateKey: '$(tfstate)'
           - task: AzureFunctionApp@1
             displayName: 'Azure functions app deploy'
