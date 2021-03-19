@@ -13,7 +13,7 @@ variable storage_tier{
     type = string
 }
 
-variable storage__replication_type{
+variable storage_replication_type{
     description = "replication type for the storage account"
     type = string
 }

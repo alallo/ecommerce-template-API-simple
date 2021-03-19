@@ -8,7 +8,7 @@ resource "azurerm_storage_account" "ecommerce_storage" {
   resource_group_name      = azurerm_resource_group.ecommerce_rg.name
   location                 = azurerm_resource_group.ecommerce_rg.location
   account_tier             = var.storage_tier
-  account_replication_type = var.storage__replication_type
+  account_replication_type = var.storage_replication_type
 }
 
 resource "azurerm_app_service_plan" "ecommerce_service_plan" {
