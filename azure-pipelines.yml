@@ -51,4 +51,4 @@ stages:
           storageAccountName: '$(storageAccountName)'
           containerName: '$(containerName)'
           workingDir: 'Deploy/terraform'
-          tfstateKey: '$(tfstate)'
+          tfstateKey: '$(tfstateKey)'
