@@ -44,7 +44,6 @@ steps:
     backendAzureRmContainerName: ${{ parameters.containerName }}
     backendAzureRmKey: ${{ parameters.tfstateKey}}
 
-
 - task: AzureCLI@2
   displayName: 'Terraform - azurerm apply'
   inputs:
