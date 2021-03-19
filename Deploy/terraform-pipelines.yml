@@ -59,3 +59,11 @@ steps:
       terraform apply -auto-approve -var-file="terraform.tfvars"
       useGlobalConfig: true
     workingDirectory: ${{ parameters.workingDir }}
+
+- task: AzureFunctionApp@1
+  displayName: 'Azure functions app deploy'
+  inputs:
+    azureSubscription: $(serviceConnectionName)
+    appType: functionApp
+    appName: devecommercefunc
+    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'

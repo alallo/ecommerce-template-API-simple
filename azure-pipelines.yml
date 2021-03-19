@@ -38,36 +38,17 @@ stages:
 
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
-
-- stage: Deploy
+          
+- stage: Dev
   displayName: Deploy stage
   dependsOn: Build
-  condition: succeeded()
-
   jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    environment: 'development'
-    pool:
-      vmImage: $(vmImageName)
-
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - template: Deploy/terraform-pipelines.yml
-            parameters:
-                environment: dev1
-                vmImageName: $(vmImageName)
-                resourceGroupName: '$(resourceGroupName)'
-                storageAccountName: '$(storageAccountName)'
-                containerName: '$(containerName)'
-                workingDir: 'terraform'
-                tfstateKey: '$(tfstate)'
-          - task: AzureFunctionApp@1
-            displayName: 'Azure functions app deploy'
-            inputs:
-              azureSubscription: $(serviceConnectionName)
-              appType: functionApp
-              appName: devecommercefunc
-              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+    - template: Deploy/terraform-pipelines.yml
+      parameters:
+          environment: dev
+          vmImageName: $(vmImageName)
+          resourceGroupName: '$(resourceGroupName)'
+          storageAccountName: '$(storageAccountName)'
+          containerName: '$(containerName)'
+          workingDir: 'terraform'
+          tfstateKey: '$(tfstate)'
