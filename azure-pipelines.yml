@@ -29,7 +29,8 @@ stages:
         projects: '$(workingDirectory)/*.csproj'
         arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
         zipAfterPublish: true
-          
+    - task: PublishBuildArtifacts@1
+
 - stage: Dev
   displayName: Deploy stage
   dependsOn: Build
