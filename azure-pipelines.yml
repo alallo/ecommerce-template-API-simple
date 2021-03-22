@@ -33,10 +33,10 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
         includeRootFolder: false
         archiveType: zip
-        archiveFile: $(System.DefaultWorkingDirectory/$(Build.BuildId).zip
+        archiveFile: $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - publish: $(System.DefaultWorkingDirectory/$(Build.BuildId).zip
+    - publish: $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
       artifact: drop
           
 - stage: Dev
