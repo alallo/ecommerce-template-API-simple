@@ -75,5 +75,5 @@ jobs:
     inputs:
       azureSubscription: $(serviceConnectionName)
       appType: functionApp
-      appName: ${{ parameters.function_app_name }}
+      appName: ${{ parameters.environment }}-${{ parameters.function_app_name }}
       package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
