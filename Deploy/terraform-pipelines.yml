@@ -70,4 +70,4 @@ jobs:
       azureSubscription: $(serviceConnectionName)
       appType: functionApp
       appName: devecommercefunc
-      package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+      package: '$(System.DefaultWorkingDirectory)/*.zip'
