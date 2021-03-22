@@ -64,6 +64,10 @@ jobs:
         terraform apply -auto-approve -var-file="terraform.tfvars"
       workingDirectory: ${{ parameters.workingDir }}
 
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: 'ecommerce-functions'
+      path: $(Build.ArtifactStagingDirectory)
   - task: AzureFunctionApp@1
     displayName: 'Azure functions app deploy'
     inputs:
