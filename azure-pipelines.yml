@@ -7,6 +7,8 @@ variables:
    value: 'ubuntu-latest'
  - name: workingDirectory
    value: '$(System.DefaultWorkingDirectory)/Ecommerce.Functions'
+ - name : buildConfiguration
+   value: 'Release'
 
 stages:
 - stage: Build
@@ -20,24 +22,13 @@ stages:
 
     steps:
     - task: DotNetCoreCLI@2
-      displayName: Build
+      displayName: Publish
       inputs:
-        command: 'build'
-        projects: |
-          $(workingDirectory)/*.csproj
-        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
-
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
-
-    - publish: $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
-      artifact: drop
+        command: publish
+        publishWebProjects: false
+        projects: '$(workingDirectory)/*.csproj
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        zipAfterPublish: true
           
 - stage: Dev
   displayName: Deploy stage
