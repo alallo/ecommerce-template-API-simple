@@ -1,0 +1,28 @@
+//Create a resource group where terraform will provision the resources
+az group create -n dev-provisioning-rg -l northeurope
+
+
+
+//Create storage account and container where terraform will store the state file for the environment
+
+az group create -n dev-terraform-backend-rg -l northeurope
+
+az storage account create --resource-group dev-terraform-backend-rg --name devterraformecommenrce --sku Standard_LRS --encryption-services blob
+
+az storage account keys list --resource-group dev-terraform-backend-rg --account-name devterraformecommenrce
+
+az storage container create --name terraform-backend-files --account-name devterraformecommenrce --account-key $(KEY)
+
+
+
+//Create terraform service principal with required access
+
+$TF_SP=$(az ad sp create-for-rbac -n dev-tf-sp --role contributor --scopes "/subscriptions/XXXXXXXX-XX86-47XX-X8Xf-XXXXXXXXXX/resourceGroups/dev-terraform-backend-rg/providers/Microsoft.Storage/storageAccounts/devterraformecommenrce" "/subscriptions/XXXXXXXX-XX86-47XX-X8Xf-XXXXXXXXXX/resourceGroups/dev-provisioning-rg"  )
+# Client ID of the service principal
+TF_CLIENT_ID= "appId from $TF_SP"
+# Client secret of the service principal
+TF_CLIENT_SECRET= "password from $TF_SP"
+# Set your tenant ID
+TF_TENANT_ID="your-tenant-id"
+# Set your subscription ID
+TF_SUBSCRIPTION="your-subcription-id"
