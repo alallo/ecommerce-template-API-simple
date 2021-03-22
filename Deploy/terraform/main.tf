@@ -24,7 +24,7 @@ resource "azurerm_app_service_plan" "ecommerce_service_plan" {
 }
 
 resource "azurerm_function_app" "ecommerce_function_app" {
-  name                       = "${var.environment}""${var.function_app_name}"
+  name                       = join("", ["${var.environment}", "${var.function_app_name}"])
   location                   = azurerm_resource_group.ecommerce_rg.location
   resource_group_name        = azurerm_resource_group.ecommerce_rg.name
   app_service_plan_id        = azurerm_app_service_plan.ecommerce_service_plan.id
