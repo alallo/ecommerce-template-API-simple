@@ -41,6 +41,7 @@ stages:
     - template: Deploy/terraform-pipelines.yml
       parameters:
           environment: dev
+          location_short: $(location_short)
           vmImageName: $(vmImageName)
           resourceGroupName: '$(resourceGroupName)'
           storageAccountName: '$(storageAccountName)'
