@@ -17,9 +17,4 @@ variable storage_replication_type{
     description = "replication type for the storage account"
     type = string
 }
-
-variable "function_app_name" {
-  type    = string
-  default = "function_app"
-}
  

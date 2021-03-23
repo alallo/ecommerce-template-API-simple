@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "ecommerce_rg" {
-  name     = "${var.environment}_azure_functions_ecommerce_rg"
+  name     = "rg-ecommerce-${var.environment}-${var.location}-01"
   location = var.location
 }
 
 resource "azurerm_storage_account" "ecommerce_storage" {
-  name                     = "${var.environment}ecommercesa"
+  name                     = "sa-ecommerce-${var.environment}-${var.location}-01"
   resource_group_name      = azurerm_resource_group.ecommerce_rg.name
   location                 = azurerm_resource_group.ecommerce_rg.location
   account_tier             = var.storage_tier
@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "ecommerce_storage" {
 }
 
 resource "azurerm_app_service_plan" "ecommerce_service_plan" {
-  name                = "${var.environment}ecommercesp"
+  name                = "asp-ecommerce-${var.environment}-${var.location}-01"
   location            = azurerm_resource_group.ecommerce_rg.location
   resource_group_name = azurerm_resource_group.ecommerce_rg.name
   kind                = "FunctionApp"
@@ -24,7 +24,7 @@ resource "azurerm_app_service_plan" "ecommerce_service_plan" {
 }
 
 resource "azurerm_function_app" "ecommerce_function_app" {
-  name                       = "${var.environment}-${var.function_app_name}"
+  name                       = "fa-ecommerce-${var.environment}-${var.location}-01"
   location                   = azurerm_resource_group.ecommerce_rg.location
   resource_group_name        = azurerm_resource_group.ecommerce_rg.name
   app_service_plan_id        = azurerm_app_service_plan.ecommerce_service_plan.id

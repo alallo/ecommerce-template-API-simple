@@ -41,7 +41,6 @@ stages:
     - template: Deploy/terraform-pipelines.yml
       parameters:
           environment: dev
-          function_app_name: '$(function_app_name)'
           vmImageName: $(vmImageName)
           resourceGroupName: '$(resourceGroupName)'
           storageAccountName: '$(storageAccountName)'

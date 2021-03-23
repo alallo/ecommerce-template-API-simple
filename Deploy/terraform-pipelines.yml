@@ -2,8 +2,6 @@ parameters:
   - name: environment
     type: string
     default: dev1
-  - name: function_app_name
-    type: string
   - name: terraformVersion
     type: string
     default: 0.14.8
@@ -75,5 +73,5 @@ jobs:
     inputs:
       azureSubscription: $(serviceConnectionName)
       appType: functionApp
-      appName: ${{ parameters.environment }}-${{ parameters.function_app_name }}
+      appName: fa-ecommerce-${{ parameters.environment }}-$(var.location)-01
       package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
