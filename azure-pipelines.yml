@@ -40,7 +40,7 @@ stages:
   jobs:
     - template: Deploy/terraform-pipelines.yml
       parameters:
-          environment: dev
+          environment: $(environment)
           location_short: $(location_short)
           vmImageName: $(vmImageName)
           resourceGroupName: '$(resourceGroupName)'
