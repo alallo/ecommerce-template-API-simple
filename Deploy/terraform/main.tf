@@ -37,7 +37,7 @@ resource "azurerm_function_app" "ecommerce_function_app" {
 
   site_config = {
     cors = {
-      allowed_origins = *
+      allowed_origins = "*"
     }
   }
 
