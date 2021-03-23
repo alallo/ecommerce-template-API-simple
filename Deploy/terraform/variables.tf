@@ -2,6 +2,11 @@ variable "location" {
   type    = string
   default = "northeurope"
 }
+
+variable "location_short" {
+  type    = string
+  default = "northeurope"
+}
  
 variable environment{
     description = "dev, test, staging, prod"

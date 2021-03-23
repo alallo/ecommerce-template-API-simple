@@ -73,5 +73,5 @@ jobs:
     inputs:
       azureSubscription: $(serviceConnectionName)
       appType: functionApp
-      appName: fa-ecommerce-${{ parameters.environment }}-$(var.location)-01
+      appName: fa-ecomm-${{ parameters.environment }}-$(var.location_short)-01
       package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
