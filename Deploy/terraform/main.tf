@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "ecommerce_rg" {
 }
 
 resource "azurerm_storage_account" "ecommerce_storage" {
-  name                     = "sa-ecomm-${var.environment}-${var.location_short}-01"
+  name                     = "saecomm${var.environment}${var.location_short}01"
   resource_group_name      = azurerm_resource_group.ecommerce_rg.name
   location                 = azurerm_resource_group.ecommerce_rg.location
   account_tier             = var.storage_tier
