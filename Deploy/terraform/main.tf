@@ -30,4 +30,15 @@ resource "azurerm_function_app" "ecommerce_function_app" {
   app_service_plan_id        = azurerm_app_service_plan.ecommerce_service_plan.id
   storage_account_name       = azurerm_storage_account.ecommerce_storage.name
   storage_account_access_key = azurerm_storage_account.ecommerce_storage.primary_access_key
+
+  app_settings = {
+    https_only = true
+  }
+
+  site_config = {
+    cors = {
+      allowed_origins = *
+    }
+  }
+
 }
