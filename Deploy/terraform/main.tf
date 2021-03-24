@@ -74,11 +74,11 @@ resource "azuredevops_variable_group" "variablegroup" {
 
   variable {
     name  = "function_hostname"
-    value = azurerm_function_app.functions.default_hostname
+    value = azurerm_function_app.ecommerce_function_app.default_hostname
   }
 
   variable {
     name  = "function_name"
-    value = azurerm_function_app.functions.name
+    value = azurerm_function_app.ecommerce_function_app.name
   }
 }
