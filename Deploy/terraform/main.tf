@@ -64,8 +64,8 @@ data "azuredevops_project" "project" {
 
 resource "azuredevops_variable_group" "variablegroup" {
   project_id   = data.azuredevops_project.project.id
-  name         = "${var.environment_short}-ecommerce-outputs"
-  description  = "${var.environment_short}-ecommerce-outputs"
+  name         = "${var.environment}-ecommerce-outputs"
+  description  = "${var.environment}-ecommerce-outputs"
   allow_access = true
   variable {
     name  = "function_master_key"
