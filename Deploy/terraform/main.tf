@@ -41,22 +41,11 @@ resource "azurerm_function_app" "ecommerce_function_app" {
   }
 }
 
-data "azurerm_subscription" "current" {
-}
-
-data "shell_script" "functions_key" {
-  lifecycle_commands {
-    read = file("${path.module}/readkey.sh")
-  }
-  environment = {
-    FUNC_NAME = azurerm_function_app.ecommerce_function_app.name
-    RG_NAME   = azurerm_resource_group.ecommerce_rg.name
-    SUB_ID    = data.azurerm_subscription.current.subscription_id
-  }
+data "azurerm_function_app_host_keys" "function_keys" {
+  name                = azurerm_function_app.ecommerce_function_app.name
+  resource_group_name = azurerm_resource_group.ecommerce_rg.name
   depends_on = [azurerm_function_app.ecommerce_function_app]
-
 }
-
 
 data "azuredevops_project" "project" {
   name = "ecommerce"
@@ -69,7 +58,7 @@ resource "azuredevops_variable_group" "variablegroup" {
   allow_access = true
   variable {
     name  = "function_master_key"
-    value = try(data.shell_script.functions_key.output["masterKey"], "")
+    value = azurerm_function_app_host_keys.function_keys.default_function_key
   }
 
   variable {
