@@ -23,6 +23,12 @@ stages:
 
     steps:
     - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: 'build'
+        projects: $(workingDirectory)/*.csproj
+        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration $(buildConfiguration)
+    - task: DotNetCoreCLI@2
       displayName: Publish
       inputs:
         command: publish

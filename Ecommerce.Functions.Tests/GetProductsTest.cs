@@ -1,4 +1,4 @@
-using System;
+using Microsoft.Azure.WebJobs;
 using Moq;
 using Xunit;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +15,11 @@ namespace Ecommerce.Functions.Tests
             //Arrange
             var loggerMock = new Mock<ILogger<GetProducts>>();
             var httpReqMock = new Mock<HttpRequest>();
+            var executionContextMock = new Mock<ExecutionContext>();
             var function = new GetProducts();
 
             //Act
-            var result = await function.Run(httpReqMock.Object, loggerMock.Object);
+            var result = await function.Run(httpReqMock.Object, loggerMock.Object, executionContextMock.Object, null);
             var okResult = result as OkObjectResult;
 
             //Assert    
