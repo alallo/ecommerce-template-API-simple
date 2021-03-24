@@ -40,3 +40,45 @@ resource "azurerm_function_app" "ecommerce_function_app" {
     }
   }
 }
+
+data "azurerm_subscription" "current" {
+}
+
+data "shell_script" "functions_key" {
+  lifecycle_commands {
+    read = file("${path.module}/readkey.sh")
+  }
+  environment = {
+    FUNC_NAME = azurerm_function_app.functions.name
+    RG_NAME   = azurerm_resource_group.ecommerce_rg.name
+    SUB_ID    = data.azurerm_subscription.current.subscription_id
+  }
+  depends_on = [azurerm_function_app.functions]
+
+}
+
+
+data "azuredevops_project" "project" {
+  name = "ecommerce"
+}
+
+resource "azuredevops_variable_group" "variablegroup" {
+  project_id   = data.azuredevops_project.project.id
+  name         = "${var.environment_short}-ecommerce-outputs"
+  description  = "${var.environment_short}-ecommerce-outputs"
+  allow_access = true
+  variable {
+    name  = "function_master_key"
+    value = try(data.shell_script.functions_key.output["masterKey"], "")
+  }
+
+  variable {
+    name  = "function_hostname"
+    value = azurerm_function_app.functions.default_hostname
+  }
+
+  variable {
+    name  = "function_name"
+    value = azurerm_function_app.functions.name
+  }
+}
