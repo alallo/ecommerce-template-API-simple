@@ -49,11 +49,11 @@ data "shell_script" "functions_key" {
     read = file("${path.module}/readkey.sh")
   }
   environment = {
-    FUNC_NAME = azurerm_function_app.functions.name
+    FUNC_NAME = azurerm_function_app.ecommerce_function_app.name
     RG_NAME   = azurerm_resource_group.ecommerce_rg.name
     SUB_ID    = data.azurerm_subscription.current.subscription_id
   }
-  depends_on = [azurerm_function_app.functions]
+  depends_on = [azurerm_function_app.ecommerce_function_app]
 
 }
 
