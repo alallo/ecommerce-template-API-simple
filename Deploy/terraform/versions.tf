@@ -7,5 +7,4 @@ terraform {
       source = "hashicorp/azurerm"
     }
   }
-  required_version = ">= 0.13"
 }
