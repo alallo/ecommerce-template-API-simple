@@ -27,4 +27,14 @@ variable personal_token{
     description = "personal token used to create a new variable group"
     type = string
 }
+
+variable sendgrid_secret_name{
+  description = "sendgrid secret name"
+  type = string
+}
+
+variable sendgrid_secret_value {
+  description = "sendgrid secret value"
+  type = string
+}
  
