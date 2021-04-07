@@ -1,14 +1,14 @@
 output "id" {
-  value       = var.enabled == true ? azurerm_key_vault.keyvault[0].id : null
+  value       = azurerm_key_vault.ecommerce_kv[0].id
   description = "The ID of the Key Vault."
 }
 
 output "name" {
-  value       = var.enabled == true ? azurerm_key_vault.keyvault[0].name : null
+  value       = azurerm_key_vault.ecommerce_kv[0].name
   description = "The name of the Key Vault."
 }
 
 output "uri" {
-  value       = var.enabled == true ? azurerm_key_vault.keyvault[0].vault_uri : null
+  value       = azurerm_key_vault.ecommerce_kv[0].vault_uri
   description = "The URI of the Key Vault."
 }
